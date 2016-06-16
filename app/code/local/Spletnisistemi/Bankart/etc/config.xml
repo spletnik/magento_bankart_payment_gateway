@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Mage
+ * @package    Spletnisistemi_Bankart
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Spletnisistemi_Bankart>
+            <version>0.1.2</version>
+        </Spletnisistemi_Bankart>
+    </modules>
+    <global>
+        <models>
+            <bankart>
+                <class>Spletnisistemi_Bankart_Model</class>
+                <resourceModel>bankart_mysql4</resourceModel>
+            </bankart>
+            <bankart_mysql4>
+                <class>Spletnisistemi_Bankart_Model_Mysql4</class>
+                <entities>
+                    <table>bankart_api_debug</table>
+                </entities>
+            </bankart_mysql4>
+        </models>
+        <helpers>
+            <bankart>
+                <class>Spletnisistemi_Bankart_Helper</class>
+            </bankart>
+        </helpers>
+        <resources>
+            <bankart_setup>
+                <setup>
+                    <module>Spletnisistemi_Bankart</module>
+                    <class>Spletnisistemi_Bankart_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </bankart_setup>
+            <bankart_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </bankart_write>
+            <bankart_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </bankart_read>
+        </resources>
+        <blocks>
+            <bankart>
+                <class>Spletnisistemi_Bankart_Block</class>
+            </bankart>
+        </blocks>
+    </global>
+
+    <frontend>
+        <secure_url>
+            <bankart>/bankart/bankart</bankart>
+        </secure_url>
+        <routers>
+            <bankart>
+                <use>standard</use>
+                <args>
+                    <module>Spletnisistemi_Bankart</module>
+                    <frontName>bankart</frontName>
+                </args>
+            </bankart>
+        </routers>
+        <translate>
+            <modules>
+                <Spletnisistemi_Bankart>
+                    <files>
+                        <default>Spletnisistemi_Bankart.csv</default>
+                    </files>
+                </Spletnisistemi_Bankart>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <bankart>
+                    <file>bankart.xml</file>
+                </bankart>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Spletnisistemi_Bankart>
+                    <files>
+                        <default>Spletnisistemi_Bankart.csv</default>
+                    </files>
+                </Spletnisistemi_Bankart>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <bankart>
+                                            <title>Bankart Section</title>
+                                        </bankart>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <default>
+        <payment>
+            <bankart>
+                <active>1</active>
+                <model>bankart/bankart</model>
+                <title>Kreditne kartice (Spletni sistemi Bankart)</title>
+                <order_status>pending</order_status>
+                <allowspecific>0</allowspecific>
+                <resourcepath>E:\spletnisistemi\magento\app\code\local\Spletnisistemi\Bankart\resources\</resourcepath>
+                <paymenttype>4</paymenttype>
+                <currencycode>978</currencycode>
+                <languagecode>SI</languagecode>
+                <terminalalias>Cha Terminal</terminalalias>
+                <sendmailorderconfirmation>1</sendmailorderconfirmation>
+            </bankart>
+        </payment>
+    </default>
+</config>
